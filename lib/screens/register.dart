@@ -76,13 +76,13 @@ class _RegisterState extends State<Register> {
                                         Container(
                                           // width: 0,
                                           height: 36,
-                                          child: RaisedButton(
-                                              textColor: ArgonColors.primary,
-                                              color: ArgonColors.secondary,
+                                          child: TextButton(
+                                              // textColor: ArgonColors.primary,
+                                              // color: ArgonColors.secondary,
                                               onPressed: () {},
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(4)),
+                                              // shape: RoundedRectangleBorder(
+                                              //     borderRadius:
+                                              //         BorderRadius.circular(4)),
                                               child: Padding(
                                                   padding: EdgeInsets.only(
                                                       bottom: 10,
@@ -113,13 +113,13 @@ class _RegisterState extends State<Register> {
                                         Container(
                                           // width: 0,
                                           height: 36,
-                                          child: RaisedButton(
-                                              textColor: ArgonColors.primary,
-                                              color: ArgonColors.secondary,
+                                          child: TextButton(
+                                              // textColor: ArgonColors.primary,
+                                              // color: ArgonColors.secondary,
                                               onPressed: () {},
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(4)),
+                                              // shape: RoundedRectangleBorder(
+                                              //     borderRadius:
+                                              //         BorderRadius.circular(4)),
                                               child: Padding(
                                                   padding: EdgeInsets.only(
                                                       bottom: 10,
@@ -186,19 +186,33 @@ class _RegisterState extends State<Register> {
                                             child: Input(
                                               placeholder: "Name",
                                               prefixIcon: Icon(Icons.school),
+                                              suffixIcon: Icon(Icons.school),
+                                              onTap: () => {},
+                                              onChanged: () => {},
+                                              controller: TextEditingController(),
                                             ),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: Input(
                                                 placeholder: "Email",
-                                                prefixIcon: Icon(Icons.email)),
+                                                prefixIcon: Icon(Icons.email),
+                                                suffixIcon: Icon(Icons.email),
+                                                onTap: () => {},
+                                                onChanged: () => {},
+                                                controller: TextEditingController(),
+                                            )
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: Input(
                                                 placeholder: "Password",
-                                                prefixIcon: Icon(Icons.lock)),
+                                                prefixIcon: Icon(Icons.lock),
+                                                suffixIcon: Icon(Icons.email),
+                                                onTap: () => {},
+                                                onChanged: () => {},
+                                                controller: TextEditingController()
+                                                ),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(
@@ -231,10 +245,10 @@ class _RegisterState extends State<Register> {
                                             Checkbox(
                                                 activeColor:
                                                     ArgonColors.primary,
-                                                onChanged: (bool newValue) =>
-                                                    setState(() =>
-                                                        _checkboxValue =
-                                                            newValue),
+
+                                                onChanged: (value) {
+                                                  setState(() => _checkboxValue = value ?? false );
+                                                },
                                                 value: _checkboxValue),
                                             Text("I agree with the",
                                                 style: TextStyle(
@@ -260,18 +274,18 @@ class _RegisterState extends State<Register> {
                                       Padding(
                                         padding: const EdgeInsets.only(top: 16),
                                         child: Center(
-                                          child: FlatButton(
-                                            textColor: ArgonColors.white,
-                                            color: ArgonColors.primary,
+                                          child: TextButton(
+                                            // textColor: ArgonColors.white,
+                                            // color: ArgonColors.primary,
                                             onPressed: () {
                                               // Respond to button press
                                               Navigator.pushNamed(
                                                   context, '/home');
                                             },
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(4.0),
-                                            ),
+                                            // shape: RoundedRectangleBorder(
+                                            //   borderRadius:
+                                            //       BorderRadius.circular(4.0),
+                                            // ),
                                             child: Padding(
                                                 padding: EdgeInsets.only(
                                                     left: 16.0,

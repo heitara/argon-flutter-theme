@@ -12,11 +12,11 @@ class Navbar extends StatefulWidget implements PreferredSizeWidget {
   final bool backButton;
   final bool transparent;
   final bool rightOptions;
-  final List<String> tags;
-  final Function getCurrentPage;
+  final List<String>? tags;
+  final Function? getCurrentPage;
   final bool isOnSearch;
-  final TextEditingController searchController;
-  final Function searchOnChanged;
+  final TextEditingController? searchController;
+  final Function? searchOnChanged;
   final bool searchAutofocus;
   final bool noShadow;
   final Color bgColor;
@@ -48,13 +48,14 @@ class Navbar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _NavbarState extends State<Navbar> {
-  String activeTag;
+  late String activeTag;
 
   ItemScrollController _scrollController = ItemScrollController();
 
   void initState() {
-    if (widget.tags != null && widget.tags.length != 0) {
-      activeTag = widget.tags[0];
+    var tags = widget.tags;
+    if (tags != null && tags.length != 0) {
+      activeTag = tags[0];
     }
     super.initState();
   }
@@ -64,7 +65,7 @@ class _NavbarState extends State<Navbar> {
     final bool categories =
         widget.categoryOne.isNotEmpty && widget.categoryTwo.isNotEmpty;
     final bool tagsExist =
-        widget.tags == null ? false : (widget.tags.length == 0 ? false : true);
+        widget.tags == null ? false : (widget.tags?.length == 0 ? false : true);
 
     return Container(
         height: widget.searchBar
@@ -167,7 +168,7 @@ class _NavbarState extends State<Navbar> {
                     child: Input(
                         placeholder: "What are you looking for?",
                         controller: widget.searchController,
-                        onChanged: widget.searchOnChanged,
+                        // onChanged: widget.searchOnChanged,
                         autofocus: widget.searchAutofocus,
                         suffixIcon:
                             Icon(Icons.zoom_in, color: ArgonColors.muted),
@@ -230,19 +231,22 @@ class _NavbarState extends State<Navbar> {
                     child: ScrollablePositionedList.builder(
                       itemScrollController: _scrollController,
                       scrollDirection: Axis.horizontal,
-                      itemCount: widget.tags.length,
+                      itemCount: widget.tags?.length ?? 0,
                       itemBuilder: (BuildContext context, int index) {
                         return GestureDetector(
                           onTap: () {
-                            if (activeTag != widget.tags[index]) {
-                              setState(() => activeTag = widget.tags[index]);
+                            var newTag = widget.tags?[index];
+                            if (newTag == null) { return; }
+                            if (activeTag != newTag) {
+                              var length = widget.tags?.length ?? 0;
+                              setState(() => activeTag = newTag);
                               _scrollController.scrollTo(
                                   index:
-                                      index == widget.tags.length - 1 ? 1 : 0,
+                                      index ==  length - 1 ? 1 : 0,
                                   duration: Duration(milliseconds: 420),
                                   curve: Curves.easeIn);
                               if (widget.getCurrentPage != null)
-                                widget.getCurrentPage(activeTag);
+                                widget.getCurrentPage!(activeTag);
                             }
                           },
                           child: Container(
@@ -252,15 +256,15 @@ class _NavbarState extends State<Navbar> {
                                   top: 4, bottom: 4, left: 20, right: 20),
                               // width: 90,
                               decoration: BoxDecoration(
-                                  color: activeTag == widget.tags[index]
+                                  color: activeTag == widget.tags?[index]
                                       ? ArgonColors.primary
                                       : ArgonColors.secondary,
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(4.0))),
                               child: Center(
-                                child: Text(widget.tags[index],
+                                child: Text(widget.tags?[index]?? "Nothing",
                                     style: TextStyle(
-                                        color: activeTag == widget.tags[index]
+                                        color: activeTag == widget.tags?[index]
                                             ? ArgonColors.white
                                             : ArgonColors.black,
                                         fontWeight: FontWeight.w600,

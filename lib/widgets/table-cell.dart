@@ -4,8 +4,8 @@ import 'package:argon_flutter/constants/Theme.dart';
 
 class TableCellSettings extends StatelessWidget {
   final String title;
-  final Function onTap;
-  TableCellSettings({this.title, this.onTap});
+  final Function()? onTap;
+  TableCellSettings({required this.title, required this.onTap});
 
   @override
   Widget build(BuildContext context) {

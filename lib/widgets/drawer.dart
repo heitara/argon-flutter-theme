@@ -6,7 +6,7 @@ import 'package:argon_flutter/constants/Theme.dart';
 import 'package:argon_flutter/widgets/drawer-tile.dart';
 
 class ArgonDrawer extends StatelessWidget {
-  final String currentPage;
+  final String? currentPage;
 
   ArgonDrawer({this.currentPage});
 

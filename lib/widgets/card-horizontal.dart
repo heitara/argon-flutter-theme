@@ -9,9 +9,9 @@ class CardHorizontal extends StatelessWidget {
       this.tap = defaultFunc});
 
   final String cta;
-  final String img;
-  final Function tap;
-  final String title;
+  final String? img;
+  final Function()? tap;
+  final String? title;
 
   static void defaultFunc() {
     print("the function works!");
@@ -37,7 +37,7 @@ class CardHorizontal extends StatelessWidget {
                               topLeft: Radius.circular(6.0),
                               bottomLeft: Radius.circular(6.0)),
                           image: DecorationImage(
-                            image: NetworkImage(img),
+                            image: NetworkImage(img!),
                             fit: BoxFit.cover,
                           ))),
                 ),
@@ -49,7 +49,7 @@ class CardHorizontal extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(title,
+                          Text(title ?? "",
                               style: TextStyle(
                                   color: ArgonColors.header, fontSize: 13)),
                           Text(cta,

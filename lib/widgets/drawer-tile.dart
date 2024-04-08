@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:argon_flutter/constants/Theme.dart';
 
 class DrawerTile extends StatelessWidget {
-  final String title;
-  final IconData icon;
-  final Function onTap;
+  final String? title;
+  final IconData? icon;
+  final Function()? onTap;
   final bool isSelected;
   final Color iconColor;
 
@@ -31,7 +31,7 @@ class DrawerTile extends StatelessWidget {
                   size: 20, color: isSelected ? ArgonColors.white : iconColor),
               Padding(
                 padding: const EdgeInsets.only(left: 8.0),
-                child: Text(title,
+                child: Text(title ?? "",
                     style: TextStyle(
                         letterSpacing: .3,
                         fontSize: 15,
